@@ -36,6 +36,21 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Add Bootstrap to rails
+gem 'bootstrap', '~> 4.1.1'
+
+# Add JQuery to rails, for use with Bootstrap
+gem 'jquery-rails'
+
+# Faker, to generate fake data
+gem 'faker'
+
+# For pagination
+gem 'kaminari'
+
+# For search
+gem 'has_scope'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

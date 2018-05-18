@@ -1,0 +1,13 @@
+<div class="card text-center mt-3">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body showJob">
+    <h3 class="card-title jobTitle"><%= @job.title %></h3>
+    <p class="card-text"><%= @job.description.html_safe %></p>
+    <a href="#" class="btn btn-success">Apply</a>
+  </div>
+  <div class="card-footer text-muted">
+    <%= time_ago_in_words @job.updated_at %>
+  </div>
+</div>

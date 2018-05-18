@@ -5,3 +5,24 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+1000.times do
+  description = ""
+
+  def jobDescription
+    str = ""
+    5.times do
+      str << Faker::Company.catch_phrase + " " + Faker::Company.catch_phrase.downcase + ". "
+    end
+    return str
+  end
+
+  description << jobDescription
+  description << "<br><br>"
+  description << jobDescription
+
+  Job.create!({
+    title: Faker::Job.title,
+    description: description
+    })
+end

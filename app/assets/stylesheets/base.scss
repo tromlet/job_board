@@ -1,0 +1,54 @@
+$pagination-active-bg: rgb(52, 58, 64) !default;
+$pagination-color: black !default;
+$pagination-active-color: white !default;
+$pagination-hover-color: $pagination-active-bg !default;
+$pagination-active-border-color: $pagination-active-bg !default;
+$pagination-hover-border-color: $pagination-active-bg !default;
+$pagination-border-color: $pagination-active-bg !default;
+
+@import "bootstrap";
+
+body {
+  background: top / contain no-repeat url("light-clean-work-space.jpg");
+}
+
+footer a {
+  color: $light;
+}
+
+a {
+  color: #777777;
+
+  &:hover {
+    color: #777777;
+    text-decoration: underline;
+  }
+}
+
+.showJob {
+  text-align: left;
+}
+
+.jobTable {
+  padding: 0px 15px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, .9);
+}
+
+.logoStrong {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: 700;
+}
+
+.logoLight {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: 300;
+}
+
+.logoStrong, .logoLight {
+  font-size: 1.4em;
+}
+
+.navbar-brand {
+  margin: 0px 30px 0px 0px;
+}
