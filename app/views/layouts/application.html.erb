@@ -13,10 +13,13 @@
   <body>
     <%= render 'header' %>
 
-
     <main role="main">
 
       <div class="container">
+
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+
         <%= yield %>
       </div>
 

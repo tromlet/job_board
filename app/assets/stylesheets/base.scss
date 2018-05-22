@@ -9,7 +9,7 @@ $pagination-border-color: $pagination-active-bg !default;
 @import "bootstrap";
 
 body {
-  background: top / contain no-repeat url("light-clean-work-space.jpg");
+  background: bottom / cover no-repeat url("light-clean-work-space.jpg");
 }
 
 footer a {
@@ -29,7 +29,7 @@ a {
   text-align: left;
 }
 
-.jobTable {
+.jobTable, .userTable {
   padding: 0px 15px;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, .9);

@@ -1,11 +1,14 @@
 <div class="card text-center mt-3">
   <div class="card-header">
-    Featured
+    Posted by <%= link_to "#{@job.user.firstname} #{@job.user.lastname}", profile_path(@job.user.id) %>
   </div>
   <div class="card-body showJob">
     <h3 class="card-title jobTitle"><%= @job.title %></h3>
     <p class="card-text"><%= @job.description.html_safe %></p>
-    <a href="#" class="btn btn-success">Apply</a>
+    <%= link_to "Apply", edit_job_path(@job), class: "btn btn-success btn-sm" %>
+    <% if @job.user == current_user %>
+    <%= link_to "Edit", edit_job_path(@job), class: "btn btn-info btn-sm" %> <%= link_to "Delete", @job, method: :delete, class: "btn btn-danger btn-sm btn-deleteJob", remote: true %>
+    <% end %>
   </div>
   <div class="card-footer text-muted">
     <%= time_ago_in_words @job.updated_at %>

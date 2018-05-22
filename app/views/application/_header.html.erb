@@ -6,26 +6,32 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/jobs">Home <span class="sr-only">(current)</span></a>
-        </li>
         <li class="nav-item">
-          <a class="nav-link" href="/jobs">Jobs</a>
+          <%= link_to "Add a Job", new_job_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Create a Jaerb", new_job_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Hello, <%= current_user.firstname %>!
+            </a>
+            <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+              <%= link_to "View your Profile", profile_path(current_user.id), class: 'dropdown-item text-light bg-dark' %>
+              <%= link_to "Update your Information", edit_user_registration_path, class: 'dropdown-item text-light bg-dark' %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "Sign Out", destroy_user_session_path, class: 'dropdown-item text-light bg-dark', method: :delete %>
+            </div>
+          </li>
+          <% else %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Hello there!
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Log In", new_user_session_path, class: 'dropdown-item' %>
+              <%= link_to "Create an Account", new_user_registration_path, class: 'dropdown-item' %>
+            </div>
+          </li>
+        <% end %>
       </ul>
       <%= form_tag(jobs_path, method: :get, class: "form-inline my-2 my-lg-0") do %>
         <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">

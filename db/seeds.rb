@@ -6,10 +6,23 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-1000.times do
-  description = ""
+100.times do
+  jobDescription = ""
 
-  def jobDescription
+  firstname = Faker::Name.first_name
+  lastname = Faker::Name.last_name
+  user = User.new({
+    email: Faker::Internet.email(firstname),
+    firstname: firstname,
+    lastname: lastname,
+    description: Faker::Hipster.paragraph,
+    password: "password",
+    password_confirmation: "password"
+  })
+  user.skip_confirmation!
+  user.save!
+
+  def genJobDescription
     str = ""
     5.times do
       str << Faker::Company.catch_phrase + " " + Faker::Company.catch_phrase.downcase + ". "
@@ -17,12 +30,13 @@
     return str
   end
 
-  description << jobDescription
-  description << "<br><br>"
-  description << jobDescription
+  jobDescription << genJobDescription
+  jobDescription << "<br><br>"
+  jobDescription << genJobDescription
 
   Job.create!({
     title: Faker::Job.title,
-    description: description
-    })
+    description: jobDescription,
+    user_id: user.id
+  })
 end

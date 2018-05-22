@@ -1,5 +1,7 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:destroy, :edit, :update, :show]
+  before_action :set_job_with_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only:[:new, :create, :edit, :update, :destroy]
   has_scope :search
 
   def index
@@ -45,6 +47,10 @@ class JobsController < ApplicationController
   private
     def set_job
       @job = Job.find(params[:id])
+    end
+
+    def set_job_with_user
+      @job = current_user.jobs.find(params[:id])
     end
 
     def job_params
