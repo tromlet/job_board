@@ -12,6 +12,6 @@ class User < ApplicationRecord
 
   def avatar_url
     hash = Digest::MD5.hexdigest(email)
-    "http://www.gravatar.com/#{hash}"
+    "http://www.gravatar.com/avatar/#{hash}?size=800px"
   end
 end

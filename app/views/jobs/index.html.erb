@@ -1,7 +1,7 @@
 <%= paginate @jobs %>
-<div class="jobTable">
+<div class="jobTable panel panel-default">
   <table class="table table-striped table-hover mt-3">
-    <thead>
+    <thead class="bg-dark">
       <tr>
         <th scope="col">Job Title</th>
         <th scope="col">Posted By</th>
@@ -30,6 +30,6 @@
       <% end %>
     </tbody>
   </table>
-</div>
+</div><br />
 
 <%= paginate @jobs %>

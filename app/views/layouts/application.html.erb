@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/cyborg/bootstrap.min.css">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -16,11 +17,13 @@
     <main role="main">
 
       <div class="container">
+        <div class="col align-items-center ">
 
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
 
-        <%= yield %>
+          <%= yield %>
+        </div>
       </div>
 
     </main>

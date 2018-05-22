@@ -10,7 +10,12 @@
     <%= link_to "Edit", edit_job_path(@job), class: "btn btn-info btn-sm" %> <%= link_to "Delete", @job, method: :delete, class: "btn btn-danger btn-sm btn-deleteJob", remote: true %>
     <% end %>
   </div>
-  <div class="card-footer text-muted">
-    <%= time_ago_in_words @job.updated_at %>
+  <div class="card-footer text-muted row justify-content-around">
+    <div class="col-4">
+      <%= time_ago_in_words @job.updated_at %> ago
+    </div>
+    <div class="col-4">
+      Closing at this time
+    </div>
   </div>
 </div>

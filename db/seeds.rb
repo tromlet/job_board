@@ -6,13 +6,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-100.times do
+students = ["jsanderlin@arrayschool.com", "dev.breu@gmail.com",
+  "quinnl@thearrayschool.com", "crags1838@gmail.com", "luckymj13@yahoo.com",
+  "apickle@gmail.com", "myerswyo@gmail.com", "landoncof@thearrayschool.com",
+  "copyalex@hotmail.com", "harrypotter@thearrayschool.com"]
+
+100.times do |i|
   jobDescription = ""
 
   firstname = Faker::Name.first_name
   lastname = Faker::Name.last_name
+  email = i < students.length ? students[i] : Faker::Internet.email(firstname)
   user = User.new({
-    email: Faker::Internet.email(firstname),
+    email: email,
     firstname: firstname,
     lastname: lastname,
     description: Faker::Hipster.paragraph,
