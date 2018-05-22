@@ -9,4 +9,9 @@ class User < ApplicationRecord
   validates :lastname, presence: true
 
   has_many :jobs
+
+  def avatar_url
+    hash = Digest::MD5.hexdigest(email)
+    "http://www.gravatar.com/#{hash}"
+  end
 end
