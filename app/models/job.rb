@@ -5,4 +5,6 @@ class Job < ApplicationRecord
   scope :search, -> search {where("jobs.title LIKE '%#{search}%' OR jobs.description LIKE '%#{search}%'")}
 
   belongs_to :user
+  has_many :applicants
+  has_many :candidates, through: :applicants, source: :user
 end

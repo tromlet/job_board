@@ -1,0 +1,28 @@
+<%= form_with model: @profile, url: profile_path(@profile), method: "PUT", local: true do |f| %>
+
+<div class="card-body bg-light mb-3">
+
+  <h2 class="card-title text-dark">Edit Profile</h2>
+
+  <h3 class="card-subtitle mb-2 text-muted">Update Name</h3>
+  <p class="card-text">
+    <%= f.label :firstname, "First Name" %>
+    <%= f.text_field :firstname,  autocomplete: "firstname", class: "form-control mb-3", placeholder: "First Name" %>
+    <%= f.label :lastname, "Last Name" %>
+    <%= f.text_field :lastname,  autocomplete: "lastname", class: "form-control mb-3", placeholder: "Last Name" %></p><br />
+
+  <h3 class="card-subtitle mb-2 text-muted">Update Description</h3>
+  <p class="card-text"><%= f.text_area :description, autocomplete: "description", class: "form-control mb-3", placeholder: "Tell us a bit about yourself!" %></p><br />
+
+
+  <h3 class="card-subtitle mb-2 text-muted">Upload Resume</h3>
+  <p class="card-text btn btn-info">
+    <%= f.file_field :resume %>
+
+  <p class="card-text">
+    <%= f.submit "Update", class: "btn btn-success mb-3" %>
+  </div>
+
+  <%= link_to "Back", :back, class: "btn btn-secondary btn-sm" %>
+
+<% end %>

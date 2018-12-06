@@ -25,14 +25,20 @@ a {
   }
 }
 
-.showJob {
-  text-align: left;
+.jobTable, .prospectTable {
+  background-color: rgba(255, 255, 255, .9);
 }
 
-.jobTable, .userTable {
-  // padding: 0px 15px;
-  // border-radius: 10px;
+.tableTopper {
+  background-color: #222;
+  height: 0.25rem;
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.tableBottomer {
   background-color: rgba(255, 255, 255, .9);
+  height: 0.25rem;
+  border-radius: 0 0 0.25rem 0.25rem;
 }
 
 .logoStrong {
@@ -51,4 +57,23 @@ a {
 
 .navbar-brand {
   margin: 0px 30px 0px 0px;
+}
+
+.showJob {
+  text-align: left;
+}
+
+.text-light {
+  color: #ccc;
+}
+
+#profile-image {
+  max-width: 400px;
+  max-height: 400px;
+  border-radius: .25rem;
+}
+
+#resume-view {
+  height: 600px;
+  display: none;
 }

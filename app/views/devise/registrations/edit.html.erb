@@ -7,21 +7,21 @@
 
 <div class="card-body bg-light mb-3">
 
-  <h2 class="card-title">Edit <%= resource_name.to_s.humanize %></h2>
+  <h2 class="card-title text-dark">Edit <%= resource_name.to_s.humanize %></h2>
 
   <h3 class="card-subtitle mb-2 text-muted">Update Email Address</h3>
-  <p class="card-text"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mb-3", placeholder: "Your email address" %></p><br />
+  <p class="card-text">
+    <%= f.label :email, "Email address" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mb-3", placeholder: "Your email address" %>
+  </p><br />
 
   <h3 class="card-subtitle mb-2 text-muted">Update Password</h3>
-  <p class="card-text"><%= f.password_field :password, autocomplete: "off", class: "form-control mb-3", placeholder: "Password (#{@minimum_password_length} characters minimum - leave blank if you don't want to change your password)" %></p>
-  <p class="card-text"><%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control mb-3", placeholder: "Confirm your password" %></p><br />
-
-  <h3 class="card-subtitle mb-2 text-muted">Update Description</h3>
-  <p class="card-text"><%= f.text_area :description, autocomplete: "description", class: "form-control mb-3", placeholder: "Tell us a bit about yourself!" %></p><br />
-
-  <h3 class="card-subtitle mb-2 text-muted">Update Name</h3>
-  <p class="card-text"><%= f.text_field :firstname,  autocomplete: "firstname", class: "form-control mb-3", placeholder: "First Name" %></p>
-  <p class="card-text"><%= f.text_field :lastname,  autocomplete: "lastname", class: "form-control mb-3", placeholder: "Last Name" %></p><br />
+  <p class="card-text">
+    <%= f.label :password, "Password - (#{@minimum_password_length} characters minimum - leave blank if you don't want to change your password)" %>
+    <%= f.password_field :password, autocomplete: "off", class: "form-control mb-3", placeholder: "Password" %>
+    <%= f.label :password_confirmation, "Confirm your new password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control mb-3", placeholder: "Confirm your new password" %>
+  </p><br />
 
   <h3 class="card-subtitle mb-2 text-muted">Apply Changes</h3>
   <p class="card-text"><%= f.password_field :current_password, autocomplete: "off", class: "form-control mb-3", placeholder: "Password (we need your current password to confirm your changes)" %></p>
@@ -32,11 +32,11 @@
 
 <div class="card-body bg-light mb-3">
 
-  <h2 class="card-title">Delete Your Account</h2>
+  <h2 class="card-title text-dark">Delete Your Account</h2>
 
   <h3 class="card-subtitle mb-2 text-muted">Unhappy?</h3>
   <p class="card-text">Press the button below to delete your account.  We're sorry to see you go!</p>
-  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger mb-3" %>
+  <%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger mb-3" %>
 </div>
 
 <%= link_to "Back", :back, class: "btn btn-secondary btn-sm" %>

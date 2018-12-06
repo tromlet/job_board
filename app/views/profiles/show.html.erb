@@ -1,46 +1,79 @@
-<div class="card col-8 align-self-center mt-3 mb-3">
-  <%= image_tag @profile.avatar_url, class: "card-img-top", alt: "User's Gravatar profile image"%>
+<div class="card row justify-content-center mt-3 mb-3">
+    <%= image_tag @profile.big_avatar_url, id: "profile-image", class: "card-img-top", alt: "User's Gravatar profile image"%>
   <div class="card-body">
-    <h5 class="card-title"><%= @profile.firstname %> <%= @profile.lastname %></h5>
-    <p class="card-text"><%= @profile.description %></p>
-    <%= mail_to @profile.email, "Email #{@profile.firstname}!", class: "btn btn-primary" %>
+    <h5 class="card-title text-white"><%= @profile.firstname %> <%= @profile.lastname %></h5>
+    <p class="card-text text-light"><%= @profile.description %></p>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><strong class="text-light">Company:</strong> Blank Enterprises, Ltd.</li>
+      <li class="list-group-item"><strong class="text-light">Location:</strong> Earth</li>
+      <% if @profile.resume.attached? %>
+      <li class="list-group-item"><strong class="text-light">Resume:</strong>
+        <span class="btn btn-primary btn-sm" id="view-resume">View <%= "#{@profile.firstname}'s" %> Resume</span>
+      </li>
+      <iframe src="<%= resume_path %>" id="resume-view"></iframe>
+      <!-- <div class="embed-responsive embed-responsive-16by9" >
+        <iframe src="<%= resume_path %>" class="embed-responsive-item"></iframe>
+      </div> -->
+    </ul>
+      <% else %>
+      <li class="list-group-item"><strong class="text-light">Resume:</strong> This user has not yet uploaded a resume.</li>
+    </ul>
+      <% end %>
+
+
+
+    <%= mail_to @profile.email, "Email #{@profile.firstname}!", class: "btn btn-primary mt-3" %>
+    <% if current_user == @profile %>
+      <%= link_to "Edit your profile", edit_profile_path(@profile), class: "btn btn-success mt-3" %>
+    <% end %>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"><strong>Company:</strong> Blank Enterprises, Ltd.</li>
-    <li class="list-group-item"><strong>Location:</strong> Earth</li>
-  </ul>
+  <div></div>
   <div class="card-body">
-    <%= paginate @jobs %>
-      <div class="jobTable">
-        <table class="table table-striped table-hover mt-3">
-          <thead>
-            <tr>
-              <th scope="col">Job Title</th>
-              <th scope="col">Employer</th>
-              <th scope="col">Location</th>
-              <th scope="col">Closing Date</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @jobs.each do |job| %>
-              <tr class="jobRow<%= job.id %>">
-                <td><%= link_to job.title, job_path(job) %></a></td>
-                <td>Blank Enterprises, Ltd.</td>
-                <td>Earth</td>
-                <td>Tomorrow</td>
-                <td><%= link_to "Apply", edit_job_path(job), class: "btn btn-success btn-sm" %></td>
-                <% if job.user == current_user  %>
-                <td><%= link_to "Edit", edit_job_path(job), class: "btn btn-info btn-sm" %> <%= link_to "Delete", job, method: :delete, class: "btn btn-danger btn-sm btn-deleteJob", remote: true %></td>
-                <% else %>
-                <td></td>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="prospects-tab" data-toggle="tab" href="#prospects" role="tab" aria-controls="prospects" aria-selected="true">Job Applications</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="jobs-tab" data-toggle="tab" href="#jobs" role="tab" aria-controls="jobs" aria-selected="false">Job Postings</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="prospects" role="tabpanel" aria-labelledby="prospects-tab">...</div>
+      <div class="tab-pane fade" id="jobs" role="tabpanel" aria-labelledby="jobs-tab">
+        <%= paginate @jobs %>
+          <div class="jobTable">
+            <table class="table table-striped table-hover mt-3">
+              <thead class="bg-dark">
+                <tr>
+                  <th scope="col">Job Title</th>
+                  <th scope="col">Employer</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Closing Date</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @jobs.each do |job| %>
+                  <tr class="jobRow<%= job.id %>">
+                    <td><%= link_to job.title, job_path(job) %></a></td>
+                    <td class="text-muted">Blank Enterprises, Ltd.</td>
+                    <td class="text-muted">Earth</td>
+                    <td class="text-muted">Tomorrow</td>
+                    <td><%= link_to "Apply", edit_job_path(job), class: "btn btn-success btn-sm" %></td>
+                    <% if job.user == current_user  %>
+                    <td><%= link_to "Edit", edit_job_path(job), class: "btn btn-info btn-sm" %> <%= link_to "Delete", job, method: :delete, class: "btn btn-danger btn-sm btn-deleteJob", remote: true %></td>
+                    <% else %>
+                    <td></td>
+                    <% end %>
+                  </tr>
                 <% end %>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+              </tbody>
+            </table>
+          </div>
+        <%= paginate @jobs %>
       </div>
-    <%= paginate @jobs %>
+    </div>
   </div>
 </div>

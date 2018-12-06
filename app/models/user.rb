@@ -9,8 +9,20 @@ class User < ApplicationRecord
   validates :lastname, presence: true
 
   has_many :jobs
+  has_many :applicants
+  has_many :prospects, through: :applicants, source: :jobs
+  has_one_attached :resume
 
-  def avatar_url
+  # Grabs the standard, small Gravatar for use as an avatar
+  def smol_avatar_url
+    # Gravatar uses MD5 hashes of people's email addresses, so it works well here.
+    hash = Digest::MD5.hexdigest(email)
+    "http://www.gravatar.com/avatar/#{hash}?size=50px"
+  end
+
+  # Grabs the big Gravatar for use as an avatar!
+  def big_avatar_url
+    # Gravatar uses MD5 hashes of people's email addresses, so it works well here.
     hash = Digest::MD5.hexdigest(email)
     "http://www.gravatar.com/avatar/#{hash}?size=800px"
   end

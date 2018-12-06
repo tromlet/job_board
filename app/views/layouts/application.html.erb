@@ -18,9 +18,15 @@
 
       <div class="container">
         <div class="col align-items-center ">
-
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
+        <% unless flash[:notice].blank? %>
+          <p class="alert alert-secondary"><%= notice %></p>
+        <% end %>
+        <% unless flash[:alert].blank? %>
+          <p class="alert alert-warning"><%= alert %></p>
+        <% end %>
+        <% unless flash[:error].blank? %>
+          <p class="alert alert-danger"><%= flash[:error] %></p>
+        <% end %>
 
           <%= yield %>
         </div>

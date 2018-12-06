@@ -16,11 +16,11 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     # @job.title = params[:job][:title]
     # @job.description = params[:job][:description]
+    @job.user = current_user
 
     if @job.save
       redirect_to jobs_path
     else
-      # debugger
       flash.now[:notice] = "We failed to create your job.  Sorry!"
       render 'new'
     end
